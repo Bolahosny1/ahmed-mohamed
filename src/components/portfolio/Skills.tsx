@@ -1,44 +1,87 @@
 import { useReveal } from "@/hooks/useReveal";
 import { Code2, Brain, BarChart3, Database, Users, Cpu } from "lucide-react";
 
-const groups = [
+type Skill = { name: string; icon: string };
+
+const sIcon = (slug: string, color = "06B6D4") =>
+  `https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/${slug}.svg`;
+
+const groups: { icon: any; title: string; skills: Skill[] }[] = [
   {
     icon: Code2,
     title: "Programming & Tools",
-    skills: ["Python", "SQL", "MySQL", "GitHub", "Jupyter", "Google Colab"],
+    skills: [
+      { name: "Python", icon: sIcon("python") },
+      { name: "SQL", icon: sIcon("mysql") },
+      { name: "MySQL", icon: sIcon("mysql") },
+      { name: "GitHub", icon: sIcon("github") },
+      { name: "Jupyter", icon: sIcon("jupyter") },
+      { name: "Google Colab", icon: sIcon("googlecolab") },
+    ],
   },
   {
     icon: Brain,
     title: "Machine Learning",
-    skills: ["Scikit-Learn", "XGBoost", "GridSearchCV", "Feature Engineering", "MLFlow"],
+    skills: [
+      { name: "Scikit-Learn", icon: sIcon("scikitlearn") },
+      { name: "XGBoost", icon: sIcon("scikitlearn") },
+      { name: "GridSearchCV", icon: sIcon("scikitlearn") },
+      { name: "Feature Eng.", icon: sIcon("scikitlearn") },
+      { name: "MLFlow", icon: sIcon("mlflow") },
+    ],
   },
   {
     icon: Cpu,
     title: "Deep Learning",
-    skills: ["TensorFlow", "Keras", "ANN", "CNN", "Transfer Learning", "Image Classification", "Object Detection"],
+    skills: [
+      { name: "TensorFlow", icon: sIcon("tensorflow") },
+      { name: "Keras", icon: sIcon("keras") },
+      { name: "ANN", icon: sIcon("tensorflow") },
+      { name: "CNN", icon: sIcon("tensorflow") },
+      { name: "Transfer Learning", icon: sIcon("tensorflow") },
+      { name: "Object Detection", icon: sIcon("opencv") },
+    ],
   },
   {
     icon: BarChart3,
-    title: "Data Analysis & Visualization",
-    skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly", "Data Preprocessing"],
+    title: "Data Analysis & Viz",
+    skills: [
+      { name: "Pandas", icon: sIcon("pandas") },
+      { name: "NumPy", icon: sIcon("numpy") },
+      { name: "Matplotlib", icon: sIcon("python") },
+      { name: "Seaborn", icon: sIcon("python") },
+      { name: "Plotly", icon: sIcon("plotly") },
+    ],
   },
   {
     icon: Database,
     title: "Databases",
-    skills: ["MySQL", "SQL", "Data Modeling", "Query Optimization"],
+    skills: [
+      { name: "MySQL", icon: sIcon("mysql") },
+      { name: "SQL", icon: sIcon("mysql") },
+      { name: "Data Modeling", icon: sIcon("mysql") },
+      { name: "Query Opt.", icon: sIcon("mysql") },
+    ],
   },
   {
     icon: Users,
     title: "Soft Skills",
-    skills: ["Problem Solving", "Communication", "Teamwork", "Organization", "Management"],
+    skills: [
+      { name: "Problem Solving", icon: sIcon("leetcode") },
+      { name: "Communication", icon: sIcon("googlemeet") },
+      { name: "Teamwork", icon: sIcon("slack") },
+      { name: "Organization", icon: sIcon("notion") },
+      { name: "Management", icon: sIcon("trello") },
+    ],
   },
 ];
 
 export const Skills = () => {
   const { ref, visible } = useReveal();
   return (
-    <section id="skills" ref={ref} className="py-24 bg-gradient-hero relative overflow-hidden">
-      <div className="absolute inset-0 grid-pattern opacity-30" />
+    <section id="skills" ref={ref} className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 grid-pattern opacity-20" />
+      <div className="absolute top-1/3 -left-20 w-96 h-96 bg-gradient-glow animate-glow-pulse opacity-40" />
       <div className="container mx-auto px-4 relative">
         <div className={`text-center max-w-2xl mx-auto mb-16 ${visible ? "animate-fade-in" : "opacity-0"}`}>
           <p className="text-sm uppercase tracking-widest text-primary font-semibold mb-3">Skills</p>
@@ -55,20 +98,29 @@ export const Skills = () => {
               style={{ animationDelay: `${i * 100}ms` }}
               className={`p-6 rounded-2xl glass hover-lift group ${visible ? "animate-fade-in" : "opacity-0"}`}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-11 h-11 rounded-lg bg-gradient-primary flex items-center justify-center group-hover:rotate-6 transition-transform">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-11 h-11 rounded-lg bg-gradient-primary flex items-center justify-center group-hover:rotate-6 transition-transform shadow-glow">
                   <g.icon className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <h3 className="font-display font-semibold text-lg">{g.title}</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-3 gap-3">
                 {g.skills.map((s) => (
-                  <span
-                    key={s}
-                    className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-foreground border border-primary/20 hover:bg-primary/20 transition-colors"
+                  <div
+                    key={s.name}
+                    className="flex flex-col items-center gap-2 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 hover:border-primary/30 hover:-translate-y-1 transition-all"
                   >
-                    {s}
-                  </span>
+                    <div className="w-9 h-9 rounded-lg bg-background/60 flex items-center justify-center p-1.5">
+                      <img
+                        src={s.icon}
+                        alt={s.name}
+                        loading="lazy"
+                        className="w-full h-full object-contain dark:invert-0"
+                        style={{ filter: "drop-shadow(0 0 6px hsl(var(--primary) / 0.4))" }}
+                      />
+                    </div>
+                    <span className="text-[11px] font-medium text-center leading-tight">{s.name}</span>
+                  </div>
                 ))}
               </div>
             </div>
