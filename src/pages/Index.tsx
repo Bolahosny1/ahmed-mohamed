@@ -7,6 +7,7 @@ import { Experience } from "@/components/portfolio/Experience";
 import { Projects } from "@/components/portfolio/Projects";
 import { Education } from "@/components/portfolio/Education";
 import { Contact, Footer } from "@/components/portfolio/Contact";
+import { AIShowcase } from "@/components/portfolio/AIShowcase";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
           <Hero />
           <About />
           <Skills />
+          <AIShowcase />
           <Experience />
           <Projects />
           <Education />
