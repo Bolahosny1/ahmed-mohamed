@@ -2,12 +2,14 @@ import { ThemeProvider } from "@/components/portfolio/ThemeProvider";
 import { Navbar } from "@/components/portfolio/Navbar";
 import { Hero } from "@/components/portfolio/Hero";
 import { About } from "@/components/portfolio/About";
+import { WhyMe } from "@/components/portfolio/WhyMe";
 import { Skills } from "@/components/portfolio/Skills";
+import { Services } from "@/components/portfolio/Services";
 import { Experience } from "@/components/portfolio/Experience";
 import { Projects } from "@/components/portfolio/Projects";
 import { Education } from "@/components/portfolio/Education";
+import { Resume } from "@/components/portfolio/Resume";
 import { Contact, Footer } from "@/components/portfolio/Contact";
-import { AIShowcase } from "@/components/portfolio/AIShowcase";
 
 const Index = () => {
   return (
@@ -17,11 +19,13 @@ const Index = () => {
         <main>
           <Hero />
           <About />
+          <WhyMe />
           <Skills />
-          <AIShowcase />
+          <Services />
           <Experience />
           <Projects />
           <Education />
+          <Resume />
           <Contact />
         </main>
         <Footer />

@@ -76,6 +76,11 @@ export const Hero = () => {
                 View Projects <ArrowDown className="ml-2 h-4 w-4" />
               </a>
             </Button>
+            <Button size="lg" variant="outline" className="rounded-full border-primary/30 hover:bg-primary/10" asChild>
+              <a href="/Ahmed-Mohamed-CV.pdf" download>
+                <Download className="mr-2 h-4 w-4" /> Download CV
+              </a>
+            </Button>
           </div>
 
           <div className="flex items-center gap-4">
@@ -89,7 +94,7 @@ export const Hero = () => {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="https://github.com/"
+              href="https://github.com/AhmedMohamedFathy"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
