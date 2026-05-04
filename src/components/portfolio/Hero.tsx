@@ -100,13 +100,6 @@ export const Hero = () => {
             >
               <Mail className="h-5 w-5" />
             </a>
-            <a
-              href="mailto:ahmedmohamedamf636@gmail.com"
-              aria-label="Email"
-              className="p-3 rounded-full glass hover:shadow-glow hover:scale-110 transition-all"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
           </div>
         </div>
 
