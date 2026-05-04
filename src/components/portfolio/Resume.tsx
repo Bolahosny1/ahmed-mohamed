@@ -1,5 +1,5 @@
 import { useReveal } from "@/hooks/useReveal";
-import { Download, Eye, FileText } from "lucide-react";
+import { Download, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CV_URL = "/Ahmed-Mohamed-CV.pdf";
@@ -25,11 +25,6 @@ export const Resume = () => {
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Button size="lg" className="bg-gradient-primary text-primary-foreground hover:opacity-90 shadow-glow rounded-full" asChild>
-                <a href={CV_URL} target="_blank" rel="noopener noreferrer">
-                  <Eye className="mr-2 h-4 w-4" /> View CV
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="rounded-full border-primary/30 hover:bg-primary/10" asChild>
                 <a href={CV_URL} download>
                   <Download className="mr-2 h-4 w-4" /> Download CV
                 </a>
