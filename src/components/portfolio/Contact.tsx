@@ -1,5 +1,5 @@
 import { useReveal } from "@/hooks/useReveal";
-import { Mail, Phone, Linkedin, Github, MapPin } from "lucide-react";
+import { Mail, Phone, Linkedin, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const contacts = [
@@ -22,10 +22,10 @@ const contacts = [
     href: "https://www.linkedin.com/in/ahmedmohamedfathy/",
   },
   {
-    icon: Github,
-    label: "GitHub",
-    value: "AhmedMohamedFathy",
-    href: "https://github.com/AhmedMohamedFathy",
+    icon: MapPin,
+    label: "Location",
+    value: "Egypt",
+    href: "#",
   },
 ];
 
