@@ -3,78 +3,82 @@ import { Code2, Brain, BarChart3, Database, Users, Cpu } from "lucide-react";
 
 type Skill = { name: string; icon: string };
 
-const sIcon = (slug: string, color = "06B6D4") =>
-  `https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/${slug}.svg`;
+// Devicon CDN — high-quality colored tech icons
+const dIcon = (slug: string, variant = "original") =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${slug}/${slug}-${variant}.svg`;
 
 const groups: { icon: any; title: string; skills: Skill[] }[] = [
   {
     icon: Code2,
     title: "Programming & Tools",
     skills: [
-      { name: "Python", icon: sIcon("python") },
-      { name: "SQL", icon: sIcon("mysql") },
-      { name: "MySQL", icon: sIcon("mysql") },
-      { name: "GitHub", icon: sIcon("github") },
-      { name: "Jupyter", icon: sIcon("jupyter") },
-      { name: "Google Colab", icon: sIcon("googlecolab") },
+      { name: "Python", icon: dIcon("python") },
+      { name: "MySQL", icon: dIcon("mysql") },
+      { name: "Jupyter", icon: dIcon("jupyter") },
+      { name: "Google Colab", icon: dIcon("googlecolab") },
+      { name: "VS Code", icon: dIcon("vscode") },
+      { name: "Anaconda", icon: dIcon("anaconda") },
     ],
   },
   {
     icon: Brain,
     title: "Machine Learning",
     skills: [
-      { name: "Scikit-Learn", icon: sIcon("scikitlearn") },
-      { name: "XGBoost", icon: sIcon("scikitlearn") },
-      { name: "GridSearchCV", icon: sIcon("scikitlearn") },
-      { name: "Feature Eng.", icon: sIcon("scikitlearn") },
-      { name: "MLFlow", icon: sIcon("mlflow") },
+      { name: "Scikit-Learn", icon: dIcon("scikitlearn") },
+      { name: "XGBoost", icon: "https://upload.wikimedia.org/wikipedia/commons/6/69/XGBoost_logo.png" },
+      { name: "Pandas", icon: dIcon("pandas") },
+      { name: "NumPy", icon: dIcon("numpy") },
     ],
   },
   {
     icon: Cpu,
     title: "Deep Learning",
     skills: [
-      { name: "TensorFlow", icon: sIcon("tensorflow") },
-      { name: "Keras", icon: sIcon("keras") },
-      { name: "ANN", icon: sIcon("tensorflow") },
-      { name: "CNN", icon: sIcon("tensorflow") },
-      { name: "Transfer Learning", icon: sIcon("tensorflow") },
-      { name: "Object Detection", icon: sIcon("opencv") },
+      { name: "TensorFlow", icon: dIcon("tensorflow") },
+      { name: "Keras", icon: dIcon("keras") },
+      { name: "PyTorch", icon: dIcon("pytorch") },
+      { name: "OpenCV", icon: dIcon("opencv") },
     ],
   },
   {
     icon: BarChart3,
     title: "Data Analysis & Viz",
     skills: [
-      { name: "Pandas", icon: sIcon("pandas") },
-      { name: "NumPy", icon: sIcon("numpy") },
-      { name: "Matplotlib", icon: sIcon("python") },
-      { name: "Seaborn", icon: sIcon("python") },
-      { name: "Plotly", icon: sIcon("plotly") },
+      { name: "Pandas", icon: dIcon("pandas") },
+      { name: "NumPy", icon: dIcon("numpy") },
+      { name: "Matplotlib", icon: dIcon("matplotlib") },
+      { name: "Plotly", icon: dIcon("plotly") },
     ],
   },
   {
     icon: Database,
     title: "Databases",
     skills: [
-      { name: "MySQL", icon: sIcon("mysql") },
-      { name: "SQL", icon: sIcon("mysql") },
-      { name: "Data Modeling", icon: sIcon("mysql") },
-      { name: "Query Opt.", icon: sIcon("mysql") },
+      { name: "MySQL", icon: dIcon("mysql") },
+      { name: "PostgreSQL", icon: dIcon("postgresql") },
+      { name: "SQLite", icon: dIcon("sqlite") },
+      { name: "MongoDB", icon: dIcon("mongodb") },
     ],
   },
   {
     icon: Users,
     title: "Soft Skills",
     skills: [
-      { name: "Problem Solving", icon: sIcon("leetcode") },
-      { name: "Communication", icon: sIcon("googlemeet") },
-      { name: "Teamwork", icon: sIcon("slack") },
-      { name: "Organization", icon: sIcon("notion") },
-      { name: "Management", icon: sIcon("trello") },
+      { name: "Problem Solving", icon: "" },
+      { name: "Communication", icon: "" },
+      { name: "Teamwork", icon: "" },
+      { name: "Organization", icon: "" },
     ],
   },
 ];
+
+const initials = (name: string) =>
+  name
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
 export const Skills = () => {
   const { ref, visible } = useReveal();
@@ -96,30 +100,34 @@ export const Skills = () => {
             <div
               key={g.title}
               style={{ animationDelay: `${i * 100}ms` }}
-              className={`p-6 rounded-2xl glass hover-lift group ${visible ? "animate-fade-in" : "opacity-0"}`}
+              className={`relative p-6 rounded-2xl glass hover-lift group overflow-hidden ${visible ? "animate-fade-in" : "opacity-0"}`}
             >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-11 h-11 rounded-lg bg-gradient-primary flex items-center justify-center group-hover:rotate-6 transition-transform shadow-glow">
+              <div className="absolute -top-16 -right-16 w-40 h-40 bg-gradient-primary rounded-full blur-3xl opacity-20 group-hover:opacity-40 transition-opacity" />
+              <div className="relative flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:rotate-6 transition-transform shadow-glow">
                   <g.icon className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <h3 className="font-display font-semibold text-lg">{g.title}</h3>
               </div>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="relative grid grid-cols-2 gap-3">
                 {g.skills.map((s) => (
                   <div
                     key={s.name}
-                    className="flex flex-col items-center gap-2 p-3 rounded-xl bg-primary/5 border border-primary/10 hover:bg-primary/10 hover:border-primary/30 hover:-translate-y-1 transition-all"
+                    className="flex items-center gap-3 p-3 rounded-xl bg-background/40 backdrop-blur border border-primary/10 hover:border-primary/40 hover:bg-primary/5 hover:-translate-y-0.5 transition-all"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-background/60 flex items-center justify-center p-1.5">
-                      <img
-                        src={s.icon}
-                        alt={s.name}
-                        loading="lazy"
-                        className="w-full h-full object-contain dark:invert-0"
-                        style={{ filter: "drop-shadow(0 0 6px hsl(var(--primary) / 0.4))" }}
-                      />
+                    <div className="w-10 h-10 rounded-lg bg-white/90 dark:bg-white/95 flex items-center justify-center p-1.5 shrink-0 shadow-sm">
+                      {s.icon ? (
+                        <img
+                          src={s.icon}
+                          alt={s.name}
+                          loading="lazy"
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-xs font-bold text-primary">{initials(s.name)}</span>
+                      )}
                     </div>
-                    <span className="text-[11px] font-medium text-center leading-tight">{s.name}</span>
+                    <span className="text-sm font-medium leading-tight">{s.name}</span>
                   </div>
                 ))}
               </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowDown, Download, Mail, Github, Linkedin } from "lucide-react";
+import { ArrowDown, Download, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImg from "@/assets/hero-ai.jpg";
 
@@ -92,15 +92,6 @@ export const Hero = () => {
               className="p-3 rounded-full glass hover:shadow-glow hover:scale-110 transition-all"
             >
               <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="https://github.com/AhmedMohamedFathy"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="p-3 rounded-full glass hover:shadow-glow hover:scale-110 transition-all"
-            >
-              <Github className="h-5 w-5" />
             </a>
             <a
               href="mailto:ahmedmohamedamf636@gmail.com"
